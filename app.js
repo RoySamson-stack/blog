@@ -18,6 +18,11 @@ app.use(express.static("public"));
 
 
 app.get("/", function(req, res) {
+  // const rePost = _.truncate(posts, {
+  //   'length': 100,
+  //   'separator': ' ',
+  //   'omission': '...'
+  // })
   res.render("home", {
     startingContent: homeStartingContent,
     posts: posts
@@ -49,14 +54,15 @@ app.post("/compose/", function(req, res){
   res.redirect('/');
 });
 app.get("/posts/:topic", function(req, res){
-  const  title = _.lowerCase(req.params.topic)
+  const  title = _.lowerCase(req.params.topic);
 
   posts.forEach(function(post){
     var storedTitle = _.lowerCase(post.title);
     if(title === storedTitle){
-    console.log("Match found")
-    }else{
-      console.log("No match found")
+      res.render("post", {
+        title: post.title,
+        content: post.body
+      });
     }
   })
 });
