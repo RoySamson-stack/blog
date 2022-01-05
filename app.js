@@ -18,11 +18,7 @@ app.use(express.static("public"));
 
 
 app.get("/", function(req, res) {
-  // const rePost = _.truncate(posts, {
-  //   'length': 100,
-  //   'separator': ' ',
-  //   'omission': '...'
-  // })
+
   res.render("home", {
     startingContent: homeStartingContent,
     posts: posts
