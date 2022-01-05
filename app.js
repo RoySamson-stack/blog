@@ -39,13 +39,16 @@ app.get('/compose', function(req, res){
   res.render('compose');
  
 });
-app.post("/compose", function(req, res){
+app.post("/compose/", function(req, res){
   var post = {
     title: req.body.title,
     body: req.body.body
   }
   posts.push(post);
   res.redirect('/');
+});
+app.get("/posts/:topic", function(req, res){
+  res.send(req.params.topic)
 });
 
 
